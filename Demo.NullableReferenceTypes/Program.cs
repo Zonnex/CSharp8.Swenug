@@ -1,6 +1,6 @@
 ﻿using System;
 
-#nullable enable
+#nullable disable
 
 namespace Demo.NullableReferenceTypes
 {
@@ -9,31 +9,32 @@ namespace Demo.NullableReferenceTypes
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            
-            string test = null;
-            string test2 = GetName();
 
-            var used = test.Length;
-            var used2 = test2.Length;
+            string nullString = null;
+            string name = GetName();
 
-            int? maybeInt = null;
-            int? maybeDoubled = maybeInt.Select(i => i * 2);
+            _ = nullString.Length;
+            _ = name.Length;
 
-            Cat? cat = null;
-
-            string? maybeName = cat.Select(c => c.Name);
-            //int? maybeAge = cat.Select(c => c.Age);
+            User user = new User();
+            user.Email = NormalizeEmail(user.Email);
         }
 
-        static string? GetName()
+        static string GetName()
         {
             return "Hello";
         }
+
+        static string NormalizeEmail(string email)
+        {
+            return email.ToUpper();
+        }
     }
 
-    class Cat
+    public class User
     {
-        public int Age;
-        public string Name = "";
+        public int Id { get; set; }
+        public string? Email { get; set; }
+        public string UserName { get; set; }
     }
 }

@@ -43,7 +43,7 @@ namespace Demo.SmallerFeatures
         }
     }
 
-    public class DisposableStructs
+    public class _DisposableStructs
     {
         public void Sample()
         {

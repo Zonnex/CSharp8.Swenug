@@ -22,10 +22,19 @@ namespace Demo.Patterns
         {
             return day switch
             {
+                _ when IsSunday(day) => false,
+                { Month: 6, Day: 6 } => false,
+                { Month: 6, Day: 21 } => false,
+                { Month: 6, Day: 22 } => false,
+                { Month: 11, Day: 2 } => false,
+                { Month: 12, Day: 22 } => false,
+                { Month: 12, Day: 24 } => false,
+                { Month: 12, Day: 25 } => false,
+                { Month: 12, Day: 26 } => false,
+                { Month: 12, Day: 29 } => false,
                 _ when Before10(day) => false,
                 _ when After20(day) => false,
                 _ when After15Saturday(day) => false,
-                _ when IsSunday(day) => false,
                 _ => true
             };
 

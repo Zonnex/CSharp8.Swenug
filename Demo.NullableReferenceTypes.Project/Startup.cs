@@ -17,9 +17,20 @@ namespace Demo.NullableReferenceTypes.Project
 
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IWebHostEnvironment env)
         {
-            Configuration = configuration;
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: false, reloadOnChange: true)
+                .AddEnvironmentVariables();
+
+            if (env.IsDevelopment())
+            {
+                builder.AddUserSecrets<Startup>();
+            }
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; }
@@ -31,7 +42,7 @@ namespace Demo.NullableReferenceTypes.Project
 
             services.AddDbContextPool<SampleContext>(builder =>
             {
-                builder.UseSqlServer("")
+                builder.UseSqlServer(Configuration["ConnectionString"])
                     .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
         }

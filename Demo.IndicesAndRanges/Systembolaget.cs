@@ -15,7 +15,7 @@ namespace Demo.IndicesAndRanges
             
             static string GetPath()
             {
-                return @"C:\dev\Practice\CSharp8\CSharp8.Swenug\systembolaget.json";
+                return @"D:\dev\PracticeProjects\CSharp8\CSharp8.Swenug\systembolaget.json";
             }
         }
 
@@ -45,7 +45,10 @@ namespace Demo.IndicesAndRanges
         public object Oppettider { get; set; }
         public object RT90x { get; set; }
         public object RT90y { get; set; }
+
+        public override string ToString()
+        {
+            return Namn.ToString();
+        }
     }
-
-
 }

@@ -38,10 +38,10 @@ namespace Demo.Patterns
                 _ => true
             };
 
+            static bool IsSunday(DateTime day) => day.DayOfWeek == DayOfWeek.Sunday;
             static bool Before10(DateTime day) => day.TimeOfDay.Hours < 10;
             static bool After20(DateTime day) => day.TimeOfDay.Hours > 20;
             static bool After15Saturday(DateTime day) => day.DayOfWeek == DayOfWeek.Saturday && day.TimeOfDay.Hours > 15;
-            static bool IsSunday(DateTime day) => day.DayOfWeek == DayOfWeek.Sunday;
         }
     }
 }
